@@ -18,7 +18,7 @@ import LoginBtn from '../LoginBtn/LoginBtn.tsx';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import nipplejs, { JoystickManager, EventData, JoystickOutputData } from 'nipplejs';
 import { useMintPopup } from '../../hooks/useMintPopup.ts';
-import farcasterFrame from '@farcaster/frame-wagmi-connector';
+import farcasterMiniApp from '@farcaster/miniapp-wagmi-connector';
 import MintPopup from '../MintPopup/MintPopup.tsx';
 import VConsole from 'vconsole';
 import sdk from '@farcaster/frame-sdk';
@@ -928,7 +928,7 @@ const Game = () => {
       console.log('[🔑] User accounts:', accounts);
   
       await connect({
-        connector: farcasterFrame(),
+        connector: farcasterMiniApp(),
       });
   
     } catch (err) {

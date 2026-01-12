@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAccount, useConnect, useSwitchChain, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
+import { farcasterMiniApp } from "@farcaster/miniapp-wagmi-connector";
 import { monadTestnet } from "wagmi/chains";
 import { useTransactions } from '../../hooks/useTransactions';
 import { sdk } from '@farcaster/frame-sdk';
@@ -112,7 +112,7 @@ export function MintButton({ onSuccess, onError }: MintButtonProps) {
 
       if (!isConnected || !address) {
         console.log('🔌 No wallet connection, initiating connect');
-        connect({ connector: farcasterFrame() });
+        connect({ connector: farcasterMiniApp() });
         return;
       }
 

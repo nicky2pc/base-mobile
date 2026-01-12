@@ -1,6 +1,6 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
+import { farcasterMiniApp } from "@farcaster/miniapp-wagmi-connector";
 import { createConfig, http, WagmiProvider } from "wagmi";
 import { monadTestnet } from "wagmi/chains";
 
@@ -9,7 +9,7 @@ import { monadTestnet } from "wagmi/chains";
 export const config = createConfig({
   chains: [monadTestnet],
   syncConnectedChain: false,
-  connectors: [farcasterFrame()],
+  connectors: [farcasterMiniApp()],
   transports: {
     [monadTestnet.id]: http(),
   },

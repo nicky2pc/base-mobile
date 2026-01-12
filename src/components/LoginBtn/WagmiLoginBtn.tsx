@@ -9,7 +9,7 @@ import {
   useSendTransaction,
   useSwitchChain,
 } from "wagmi";
-import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
+import { farcasterMiniApp } from "@farcaster/miniapp-wagmi-connector";
 
 const WagmiLoginBtn = () => {
   const { isEthProviderAvailable } = useMiniAppContext();
@@ -32,7 +32,7 @@ const WagmiLoginBtn = () => {
           (
             <button
               className="login-btn"
-              onClick={() => connect({ connector: farcasterFrame() })}
+              onClick={() => connect({ connector: farcasterMiniApp() })}
             >
               Login
             </button>
