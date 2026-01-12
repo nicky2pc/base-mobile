@@ -1050,7 +1050,7 @@ const Game = () => {
         {gameState === 'menu' && (
           <>
             <div className="bg">
-              <h1 className='total-score h1'>Kill everyone <br /> Dodge everything</h1>
+              <h1 className='total-score h1'>Jesse everyone <br /> Dodge everything</h1>
                 <button disabled={isStartButtonDisabled} className="leaderboard-button" onClick={() => setIsLeaderboardOpen(true)}>
                   Leaderboard
                 </button>
