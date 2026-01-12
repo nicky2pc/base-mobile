@@ -37,12 +37,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    allowedHosts: [
-      'monad-mobile-phi.vercel.app',
-      '314f7f20912e.ngrok.app',
-      'monagaynanimals.xyz',
-      'e38637b40d99.ngrok.app'
-    ],
+    
     headers: {
       'X-Frame-Options': 'ALLOWALL',
       'Content-Security-Policy': 'frame-ancestors *',
