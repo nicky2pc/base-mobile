@@ -177,7 +177,7 @@ export const useTransactions = (): TransactionsHookReturn => {
         abi: MINT_CONTRACT_ABI,
         functionName: 'mint',
         args: [address],
-        chainId: 10143,
+        chainId: 8453,
       });
       
       const txHash = await writeContract(request);

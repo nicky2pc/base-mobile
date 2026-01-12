@@ -128,7 +128,7 @@ export const MintWagmi = async (address: string) => {
       abi: MINT_CONTRACT_ABI,
       functionName: 'mint',
       args: [address],
-      chainId: 10143,
+      chainId: 8453,
       value: ethers.parseEther("0.000001")
     };
   } catch (error) {
@@ -204,7 +204,7 @@ export const sendTransaction = async (
       nonce,
       gasLimit,
       gasPrice,
-      chainId: 10143,
+      chainId: 8453,
       data: contract.interface.encodeFunctionData("setScore", [`${score}`]),
     };
 
@@ -489,7 +489,7 @@ export const mint = async (
         nonce,
         gasLimit,
         gasPrice,
-        chainId: 10143,
+        chainId: 8453,
         data: contract.interface.encodeFunctionData("simpleMint", [userAddress, hehash, timestamp]),
       };
 

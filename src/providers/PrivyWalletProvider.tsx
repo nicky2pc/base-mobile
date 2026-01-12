@@ -8,7 +8,7 @@ export default function PrivyWalletProvider({children}: {children: React.ReactNo
       config={{
         supportedChains: [
           {
-            id: 10143,
+            id: 8453,
             name: "Monad Testnet",
             rpcUrls: {
               default: {

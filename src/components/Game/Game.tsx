@@ -954,7 +954,7 @@ const Game = () => {
     }
   };
   
-  if (!isEthProviderAvailable) {
+  if (!isEthProviderAvailable && false) {
    return (
      <div className="bg-mobile bg">
        <div className="mobile-warning">
