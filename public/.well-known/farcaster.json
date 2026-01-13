@@ -2,7 +2,7 @@
   "frame": {
     "version": "1",
     "name": "Base Defense",
-    "homeUrl": "https://base1-mobile.vercel.app/",
+    "homeUrl": "https://base-mobile.vercel.app/",
     "description": "Shoot em all in this exciting game on the  Base!",
     "subtitle": "Be the best.",
     "primaryCategory": "games",
@@ -13,21 +13,21 @@
       "testnet"
     ],
     "buttonTitle": "Play!",
-    "splashImageUrl": "https://base1-mobile.vercel.app/android-chrome-512x512.png",
+    "splashImageUrl": "https://base-mobile.vercel.app/android-chrome-512x512.png",
     "splashBackgroundColor": "#8366eb",
-    "heroImageUrl": "https://base1-mobile.vercel.app/bg.jpg",
-    "iconUrl": "https://base1-mobile.vercel.app/android-chrome-512x512.png",
-    "imageUrl": "https://base1-mobile.vercel.app/logo_2.png",
+    "heroImageUrl": "https://base-mobile.vercel.app/bg.jpg",
+    "iconUrl": "https://base-mobile.vercel.app/android-chrome-512x512.png",
+    "imageUrl": "https://base-mobile.vercel.app/logo_2.png",
     "ogTitle": "Base Defense",
     "ogDescription": "Shoot em all in this exciting game on the Base!",
-    "ogImageUrl": "https://base1-mobile.vercel.app/bg.jpg",
+    "ogImageUrl": "https://base-mobile.vercel.app/bg.jpg",
     "button": {
       "title": "Play!",
       "action": {
         "type": "launch_frame",
         "name": "Base Defense",
-        "url": "https://base1-mobile.vercel.app/",
-        "splashImageUrl": "https://base1-mobile.vercel.app/splash-image.png",
+        "url": "https://base-mobile.vercel.app/",
+        "splashImageUrl": "https://base-mobile.vercel.app/splash-image.png",
         "splashBackgroundColor": "#7663e0"
       }
     }
