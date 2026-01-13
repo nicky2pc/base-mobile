@@ -1008,8 +1008,9 @@ const Game = () => {
         <button
           className='button-fire'
           style={{
-            
             display: gameState === 'playing' ? 'block' : 'none',
+            background: 'rgba(0, 0, 245, 0.18)',
+            backdropFilter: 'blur(10px)',
           }}
           onTouchStart={() => (shootingRef.current = true)}
           onTouchEnd={() => (shootingRef.current = false)}
@@ -1182,22 +1183,6 @@ const Game = () => {
                   </button>
                   </div>
               
-                  <button 
-                    onClick={async () => {
-                      const shareText = `I just scored ${gameStat.totalScore} points in monagayanimals built by @solodaneth on Monad testnet! Can you beat my score?`;
-                      if (actions?.composeCast) {
-                        try {
-                          await actions.composeCast({ text: shareText, embeds: ['https://monagaynanimals.xyz/', 'https://warpcast.com/~/channel/monagayanimals'] });
-                        } catch (error) {
-                          console.error('Failed to cast:', error);
-                        }
-                      }
-                    }}
-                    style={{ marginLeft: '10px', backgroundColor: '#472A91', color: 'white', display: 'flex', width: '310px', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
-                  >
-                    Share on Warpcast
-                    <img src="/warpcast.svg" alt="Warpcast logo" style={{ height: '20px', width: 'auto' }} />
-                  </button>
                   <button 
                     onClick={async () => {
                       const text = `I just scored ${gameStat.totalScore} points in monagayanimals built by @solodanETH on the @monad_xyz testnet! Can you beat my score?`;

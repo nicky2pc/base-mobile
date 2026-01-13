@@ -28,7 +28,7 @@ body:has(.mint-popup-overlay.open) {
   bottom: 27px;
   left: 0;
   right: 0;
-  background-color: white;
+  background-color: #fdfdff;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   transform: translateY(100%);
@@ -36,7 +36,7 @@ body:has(.mint-popup-overlay.open) {
   max-height: 80vh;
   overflow-y: auto;
   z-index: 1001;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
 }
 @media (min-height: 1199px) {
   .mint-popup {
@@ -76,7 +76,7 @@ body:has(.mint-popup-overlay.open) {
 
 .mint-text p {
   font-size: 16px;
-  color: #666;
+  color: #5a647b;
 }
 
 .success-message {
@@ -99,21 +99,22 @@ body:has(.mint-popup-overlay.open) {
 
 .mint-button {
   width: 100%;
-  background: linear-gradient(135deg, #3498db, #8e44ad);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #0000f5, #1b1bf8);
+  color: #ffffff;
+  border: 1px solid #0000f5;
+  border-radius: 10px;
   padding: 16px;
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 245, 0.2);
 }
 
 .mint-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 245, 0.3);
 }
 
 .mint-button:active {
@@ -130,7 +131,7 @@ body:has(.mint-popup-overlay.open) {
 .view-tx-link {
   display: inline-block;
   margin-top: 16px;
-  color: #3498db;
+  color: #0000f5;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;

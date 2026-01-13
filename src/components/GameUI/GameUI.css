@@ -8,13 +8,15 @@
 }
 
 .game-ui {
-  color: white;
+  color: #0b102a;
   font-family: Arial, sans-serif;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.9);
   padding: 8px 12px;
-  font-weight: 700;
-  border-radius: 5px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 245, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .game-ui-list-bottom {
@@ -90,17 +92,18 @@
   top:10px;
   padding: 8px 12px;
   border-radius: 32px;
-  background: rgba(0, 0, 0, 0.3);
-  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 245, 0.2);
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #fff;
+  color: #0b102a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .volume-control input[type="range"] {
   width: 140px;
-  accent-color: #6e54ff;
+  accent-color: #0000f5;
 }
 
 .sound-setting {
