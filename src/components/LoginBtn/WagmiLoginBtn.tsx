@@ -34,7 +34,7 @@ const WagmiLoginBtn = () => {
               className="login-btn"
               onClick={() => connect({ connector: farcasterMiniApp() })}
             >
-              Login
+              Login Base
             </button>
           ) :
           (
