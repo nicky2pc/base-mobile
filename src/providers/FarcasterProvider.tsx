@@ -1,6 +1,6 @@
 import * as React from "react"
 import { FrameContext } from "@farcaster/frame-core/dist/context";
-import sdk from "@farcaster/frame-sdk";
+import { sdk } from '@farcaster/miniapp-sdk';
 import {
   createContext,
   ReactNode,

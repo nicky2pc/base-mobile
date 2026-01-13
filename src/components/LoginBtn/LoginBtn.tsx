@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAccount, useDisconnect, useConnect, useBalance as useWagmiBalance } from 'wagmi';
 import { farcasterMiniApp } from '@farcaster/miniapp-wagmi-connector';
 import { useMiniAppContext } from '../../hooks/useMiniAppContext.ts';
-import { sdk } from '@farcaster/frame-sdk';
+import { sdk } from '@farcaster/miniapp-sdk';
 import { useFrame } from '../../providers/FarcasterProvider.tsx';
 
 export default function LoginBtn() {
