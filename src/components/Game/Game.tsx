@@ -21,8 +21,7 @@ import { useMintPopup } from '../../hooks/useMintPopup.ts';
 import farcasterMiniApp from '@farcaster/miniapp-wagmi-connector';
 import MintPopup from '../MintPopup/MintPopup.tsx';
 import VConsole from 'vconsole';
-import sdk from '@farcaster/miniapp-sdk';
-import { useFrame } from '../../providers/FarcasterProvider.tsx';
+import { sdk } from '@farcaster/miniapp-sdk';import { useFrame } from '../../providers/FarcasterProvider.tsx';
 import { isMobile } from 'react-device-detect';
 
 
@@ -292,7 +291,7 @@ const Game = () => {
 
   useEffect(() => {
     const init = async () => {
-      await sdk.actions.ready({ disableNativeGestures: true });
+      sdk.actions.ready({ disableNativeGestures: true });
       console.log('SDK ready');
       if (isMobileDevice()) {
         // Initial joystick setup - no need to call initJoystick() here
