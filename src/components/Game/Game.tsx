@@ -21,9 +21,10 @@ import { useMintPopup } from '../../hooks/useMintPopup.ts';
 import farcasterMiniApp from '@farcaster/miniapp-wagmi-connector';
 import MintPopup from '../MintPopup/MintPopup.tsx';
 import VConsole from 'vconsole';
-import sdk from '@farcaster/frame-sdk';
+import sdk from '@farcaster/miniapp-sdk';
 import { useFrame } from '../../providers/FarcasterProvider.tsx';
 import { isMobile } from 'react-device-detect';
+
 
 //new VConsole();
 const Game = () => {
