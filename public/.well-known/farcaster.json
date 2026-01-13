@@ -14,7 +14,7 @@
     ],
     "buttonTitle": "Play!",
     "splashImageUrl": "https://base-mobile.vercel.app/android-chrome-512x512.png",
-    "splashBackgroundColor": "#8366eb",
+    "splashBackgroundColor": "#4A98EB",
     "heroImageUrl": "https://base-mobile.vercel.app/bg.jpg",
     "iconUrl": "https://base-mobile.vercel.app/android-chrome-512x512.png",
     "imageUrl": "https://base-mobile.vercel.app/logo_2.jpg",
@@ -28,7 +28,7 @@
         "name": "Base Defense",
         "url": "https://base-mobile.vercel.app/",
         "splashImageUrl": "https://base-mobile.vercel.app/splash-image.png",
-        "splashBackgroundColor": "#7663e0"
+        "splashBackgroundColor": "#4A98EB"
       }
     }
   },
