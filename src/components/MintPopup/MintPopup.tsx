@@ -54,7 +54,7 @@ const MintPopup: React.FC<MintPopupProps> = ({ open, onClose }) => {
     <div className={`mint-popup-overlay  ${open ? 'open' : ''}`}>
       <div className="mint-popup">
         <div className="mint-popup-content">
-          <img src="/token.png" alt="Token" width={300} height={300} className="token-image" />
+          <img src="/token.jpg" alt="Token" width={300} height={300} className="token-image" />
           <div className="mint-text">
             <h2>Mint Your Token</h2>
             <p>Get your exclusive game token now!</p>

@@ -204,7 +204,7 @@ button:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/public/bg_m.png');
+  background-image: url('/public/bg_m.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

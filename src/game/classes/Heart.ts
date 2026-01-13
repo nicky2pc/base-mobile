@@ -14,7 +14,7 @@ export class Heart {
     ctx.font = "20px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("🍆", this.x, this.y);
+    ctx.fillText("🫐", this.x, this.y);
   }
 
   isExpired(): boolean {
@@ -27,6 +27,6 @@ export class Buff extends Heart {
     ctx.font = "20px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("🍑", this.x, this.y);
+    ctx.fillText("🟦", this.x, this.y);
   }
 }

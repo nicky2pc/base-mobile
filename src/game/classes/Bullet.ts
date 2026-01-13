@@ -46,8 +46,29 @@ export class Bullet {
         ctx.fillStyle = this.color;
     }
 
+    const size = this.size + (this.type === "fire" ? Math.sin(performance.now() / 100) * 2 : 0);
+    const side = size * 2;
+    const borderRadius = side * 0.2;
+    const x = this.x - size;
+    const y = this.y - size;
+
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size + (this.type === "fire" ? Math.sin(performance.now() / 100) * 2 : 0), 0, Math.PI * 2);
+    if (ctx.roundRect) {
+      ctx.roundRect(x, y, side, side, borderRadius);
+    } else {
+      // Fallback для браузеров без roundRect
+      const r = borderRadius;
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + side - r, y);
+      ctx.quadraticCurveTo(x + side, y, x + side, y + r);
+      ctx.lineTo(x + side, y + side - r);
+      ctx.quadraticCurveTo(x + side, y + side, x + side - r, y + side);
+      ctx.lineTo(x + r, y + side);
+      ctx.quadraticCurveTo(x, y + side, x, y + side - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
     ctx.fill();
 
     ctx.shadowBlur = 0;

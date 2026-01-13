@@ -64,8 +64,8 @@ export class Mondalak {
     let width = this.width;
     let height = this.height;
     if (this.isPlayer) {
-      width = 70;
-      height = 35;
+      width = 75;
+      height = 75;
     }
 
     ctx.scale(-1, 1); 
@@ -82,7 +82,7 @@ export class Mondalak {
     const hpRatio = this.health / this.maxHealth;
 
     ctx.save();
-    const translateY = this.type === "fire" ? 65 : 28; 
+    const translateY = this.type === "fire" ? 100 : this.isPlayer ? 60 : 28; 
     ctx.translate(20, translateY); 
 
     ctx.fillStyle = '#333';

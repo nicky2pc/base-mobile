@@ -493,7 +493,7 @@ const Game = () => {
       true,
       CONFIG.BULLET_SPEED,
       CONFIG.FIRE_RATE,
-      "#c005c7",
+      "#0000f5",
       "main",
       imageCacheRef.current.player[0]
     );
@@ -718,8 +718,13 @@ const Game = () => {
       // Shooting logic
       const isShooting = isMobileDevice() ? shootingRef.current : mouse.shooting;
       if (isShooting && Date.now() - playerTank.current.lastShot > CONFIG.FIRE_RATE) {
-        const barrelEndX = playerTank.current.x + Math.cos(playerTank.current.angle) * playerTank.current.barrelSize;
-        const barrelEndY = playerTank.current.y + Math.sin(playerTank.current.angle) * playerTank.current.barrelSize;
+        // Смещение для выстрела снизу спрайта (вниз на 25px от центра относительно направления спрайта)
+        const offsetY = 25;
+        // Вниз относительно спрайта = перпендикулярно направлению angle (по часовой стрелке на 90 градусов)
+        const downOffsetX = -Math.sin(playerTank.current.angle) * offsetY;
+        const downOffsetY = Math.cos(playerTank.current.angle) * offsetY;
+        const barrelEndX = playerTank.current.x + Math.cos(playerTank.current.angle) * playerTank.current.barrelSize + downOffsetX;
+        const barrelEndY = playerTank.current.y + Math.sin(playerTank.current.angle) * playerTank.current.barrelSize + downOffsetY;
   
         const audioPoolNew = playSound('/sound/shoot/shooooot.mp3', isSoundOn.current, audioPool.current, volumeRef.current - 4);
         audioPool.current = audioPoolNew;
@@ -855,11 +860,11 @@ const Game = () => {
       if (!playerTank.current) return;
   
       ctx.clearRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
-      ctx.fillStyle = '#ffccff';
+      ctx.fillStyle = '#9dc2fa';
       ctx.fillRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
   
       const drawMap = (ctx: CanvasRenderingContext2D) => {
-        ctx.fillStyle = '#800080';
+        ctx.fillStyle = '#0000f5';
         for (let y = 0; y < CONFIG.MAP.length; y++) {
           for (let x = 0; x < CONFIG.MAP[y].length; x++) {
             if (CONFIG.MAP[y][x] === 1) {
