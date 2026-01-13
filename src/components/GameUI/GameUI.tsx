@@ -52,7 +52,7 @@ const GameUI: React.FC<GameUIProps> = ({
                 value={volume}
                 style={{
                   width: "140px",
-                  accentColor: "#6e54ff"
+                  accentColor: "#0000f5"
                 }}
                 onChange={(e) => {
                   const value = parseInt(e.target.value);

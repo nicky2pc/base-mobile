@@ -1017,13 +1017,14 @@ const Game = () => {
             display: gameState === 'playing' ? 'block' : 'none',
             background: 'rgba(0, 0, 245, 0.18)',
             backdropFilter: 'blur(10px)',
+            fontSize: '30px',
           }}
           onTouchStart={() => (shootingRef.current = true)}
           onTouchEnd={() => (shootingRef.current = false)}
           onMouseDown={() => (shootingRef.current = true)}
           onMouseUp={() => (shootingRef.current = false)}
         >
-        🎯
+        𖦏
         </button>
         </>
         )}
@@ -1140,7 +1141,7 @@ const Game = () => {
                       value={volume}
                       style={{
                         width: "140px",
-                        accentColor: "#6e54ff"
+                        accentColor: "#0000f5"
                       }}
                       onChange={(e) => handleVolumeChange(parseInt(e.target.value))}
                     />

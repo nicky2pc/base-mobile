@@ -42,7 +42,7 @@
 }
 
 .counter WAS-value {
-  color: #6e54ff;
+  color: #0000f5;
   font-size: 1.2em;
 }
 
@@ -101,9 +101,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.volume-control input[type="range"] {
+.volume-control input[type="range"],
+.sound-setting input[type="range"] {
   width: 140px;
-  accent-color: #0000f5;
+  accent-color: #0000f5 !important;
 }
 
 .sound-setting {

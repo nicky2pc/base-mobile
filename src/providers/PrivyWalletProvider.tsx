@@ -42,7 +42,7 @@ export default function PrivyWalletProvider({children}: {children: React.ReactNo
         },
         appearance: {
           theme: 'light',
-          accentColor: '#6e54ff',
+          accentColor: '#0000f5',
           logo: '',
         },
         embeddedWallets: {
