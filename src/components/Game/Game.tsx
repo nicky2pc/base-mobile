@@ -425,7 +425,7 @@ const Game = () => {
       ],
     };
     const imageCacheFire = {
-      "fire": ["/chars/8.svg"]
+      "fire": ["/chars/wojakm1.png"]
     };
   
     const imageCachePlayer = {
