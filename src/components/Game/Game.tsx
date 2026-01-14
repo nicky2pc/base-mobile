@@ -420,11 +420,8 @@ const Game = () => {
   const preloadImages = async () => {
     const imageCacheEnemies = {
       "default": [
-        "/chars/10.svg",
-        "/chars/11.svg",
-        "/chars/12.svg",
-        "/chars/13.svg",
-        "/chars/14.svg",
+        "/chars/wojakw1.png",
+        "/chars/wojakw2.png",
       ],
     };
     const imageCacheFire = {
