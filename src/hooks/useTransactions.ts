@@ -173,7 +173,7 @@ export const useTransactions = (): TransactionsHookReturn => {
 
     try {
       const { request } = await simulateContract(config, {
-        address: "0x5d44635D3FfeFf64973c018F7Eb76DC2b27c071c" as `0x${string}`,
+        address: "0x2De241B84F9062925c532735AB56857ad402c209" as `0x${string}`,
         abi: MINT_CONTRACT_ABI,
         functionName: 'mint',
         args: [address],

@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { LeaderboardResponse } from '../types';
 import { SCORE_CONTRACT_ABI, MINT_CONTRACT_ABI } from '../constants/ABI.ts';
 const SCORE_CONTRACT_ADDRESS = "0xF72e3EE1798eEE077d72912ED7245f3Dd2c72cF7"; 
-const MINT_CONTRACT_ADDRESS = "0x5d44635D3FfeFf64973c018F7Eb76DC2b27c071c";
+const MINT_CONTRACT_ADDRESS = "0x2De241B84F9062925c532735AB56857ad402c209";
 
 const lastNonceMap = new Map<string, number>();
 let lastTotalMinted: bigint | null = null;

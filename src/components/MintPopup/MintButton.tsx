@@ -53,8 +53,8 @@ export function MintButton({ onSuccess, onError }: MintButtonProps) {
     writeError,
     waitError,
   } = useTransactions();
-
-  const MINT_CONTRACT_ADDRESS = "0x5d44635D3FfeFf64973c018F7Eb76DC2b27c071c";
+  
+  const MINT_CONTRACT_ADDRESS = "0x2De241B84F9062925c532735AB56857ad402c209";
 
   const isPending = isLoadingTxData || isWritePending || isConfirming;
   const successHandled = useRef(false);
