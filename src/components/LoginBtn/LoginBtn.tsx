@@ -12,6 +12,7 @@ export default function LoginBtn() {
   const [isLoading, setIsLoading] = useState(false);
   const { data: balance, refetch: refetchBalance } = useWagmiBalance({
     address: address,
+    chainId: 8453, // Base mainnet
   });
   const { isSDKLoaded, isEthProviderAvailable, context } = useFrame();
 
