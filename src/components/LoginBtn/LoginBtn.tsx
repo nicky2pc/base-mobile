@@ -57,7 +57,7 @@ export default function LoginBtn() {
         isConnected && (
        <>
           <div className='balance-container'>
-            <p>  {balance?.formatted?.slice(0, 4)} {balance?.symbol}</p>
+            <p>{balance?.formatted ? Number(balance.formatted).toFixed(4) : '0.0000'} {balance?.symbol || 'ETH'}</p>
           </div>
        </>
         )

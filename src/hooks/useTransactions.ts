@@ -173,7 +173,9 @@ export const useTransactions = (): TransactionsHookReturn => {
     updateGlobalTransactions(updated);
 
     try {
-      const validationString = `${Math.floor(Date.now() / 1000)}__${uuidv4()}`; // timestamp__uuid
+      // Subtract 60 seconds to prevent underflow if client clock is ahead of blockchain
+      const timestamp = Math.floor(Date.now() / 1000) - 60;
+      const validationString = `${timestamp}__${uuidv4()}`;
       const tokenURI = "ipfs://bafkreigyp53t6rwzyi2iczndj7yr5h6jo3wiyvn5gtwte434qjbfwydlrm";
       
       const { request } = await simulateContract(config, {
