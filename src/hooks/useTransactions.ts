@@ -5,6 +5,7 @@ import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagm
 import { simulateContract, writeContract } from 'wagmi/actions';
 import { config } from '../providers/FrameWalletProvider';
 import { MINT_CONTRACT_ABI } from '../constants/ABI';
+import { v4 as uuidv4 } from 'uuid';
 
 const TRANSACTIONS_UPDATED_EVENT = 'transactions-updated';
 
@@ -172,11 +173,14 @@ export const useTransactions = (): TransactionsHookReturn => {
     updateGlobalTransactions(updated);
 
     try {
+      const validationString = `${Math.floor(Date.now() / 1000)}__${uuidv4()}`; // timestamp__uuid
+      const tokenURI = "ipfs://QmYourMetadataJsonHere/1.json";
+      
       const { request } = await simulateContract(config, {
         address: "0x2De241B84F9062925c532735AB56857ad402c209" as `0x${string}`,
         abi: MINT_CONTRACT_ABI,
         functionName: 'mint',
-        args: [address],
+        args: [validationString, tokenURI],
         chainId: 8453,
       });
       
