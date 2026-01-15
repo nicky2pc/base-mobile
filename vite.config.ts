@@ -17,7 +17,7 @@ function fcFrameMeta(): Plugin {
           action: {
             type: 'launch_frame',
             name: 'Base defanse',
-            url: `https://base-mobile.vercel.appp/?v=${appVersion}`, 
+            url: `https://base-mobile.vercel.app`, 
             splashImageUrl: 'https://base-mobile.vercel.app/logo_2.jpg',
             splashBackgroundColor: '#4A98EB',
           },
