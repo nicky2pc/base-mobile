@@ -174,7 +174,7 @@ export const useTransactions = (): TransactionsHookReturn => {
 
     try {
       const validationString = `${Math.floor(Date.now() / 1000)}__${uuidv4()}`; // timestamp__uuid
-      const tokenURI = "ipfs://QmYourMetadataJsonHere/1.json";
+      const tokenURI = "ipfs://bafkreigyp53t6rwzyi2iczndj7yr5h6jo3wiyvn5gtwte434qjbfwydlrm";
       
       const { request } = await simulateContract(config, {
         address: "0x2De241B84F9062925c532735AB56857ad402c209" as `0x${string}`,
