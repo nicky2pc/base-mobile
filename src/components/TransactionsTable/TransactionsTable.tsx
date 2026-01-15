@@ -34,9 +34,7 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ transactions, cle
 
   const handleClearTransactions = () => {
     if (clearTransactions) {
-      if (window.confirm('Are you sure you want to clear all transactions?')) {
-        clearTransactions();
-      }
+      clearTransactions();
     }
   };
 
@@ -77,8 +75,8 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({ transactions, cle
                         sdk.actions.openUrl(tx.link)
                       }}>minted</a> 1 <a target="_blank" rel="noopener noreferrer" href={`#`} onClick={(evt) => {
                         evt.preventDefault();
-                        sdk.actions.openUrl(`https://magiceden.io/u/${tx.userAddress}?activeTab=%22allItems%22&chains=%5B%22monad-testnet%22%5D&wallets=%5B%22${tx.userAddress}%22%5D`)
-                      }}>Monagayanimals Penetration Pass</a> </span>
+                        sdk.actions.openUrl(`https://magiceden.io/u/${tx.userAddress}?activeTab=%22allItems%22&chains=%5B%22base%22%5D&wallets=%5B%22${tx.userAddress}%22%5D`)
+                      }}>Jesse NFT</a> </span>
                      
                     ) : (
                       <a href={"#"} onClick={(evt) => {

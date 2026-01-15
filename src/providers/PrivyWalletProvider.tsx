@@ -9,30 +9,24 @@ export default function PrivyWalletProvider({children}: {children: React.ReactNo
         supportedChains: [
           {
             id: 8453,
-            name: "Monad Testnet",
+            name: "Base",
             rpcUrls: {
               default: {
-                http: ["https://testnet-rpc.monad.xyz"],
-                webSocket: ["wss://testnet-rpc.monad.xyz"],
+                http: ["https://mainnet.base.org"],
               },
               public: {
-                http: ["https://testnet-rpc.monad.xyz"],
-                webSocket: ["wss://testnet-rpc.monad.xyz"],
-              },
-              custom: {
-                http: ["https://monad-testnet.g.alchemy.com/v2/QPrKqxYEAiWyGgR7CgIFflRKproMwXXQ"],
-                webSocket: ["wss://monad-testnet.g.alchemy.com/v2/QPrKqxYEAiWyGgR7CgIFflRKproMwXXQ"],
+                http: ["https://mainnet.base.org"],
               },
             },
             blockExplorers: {
               default: {
-                name: "Monad Explorer",
-                url: "https://testnet.monadexplorer.com",
+                name: "BaseScan",
+                url: "https://basescan.org",
               },
             },
             nativeCurrency: {
-              name: "Monad",
-              symbol: "MON",
+              name: "Ether",
+              symbol: "ETH",
               decimals: 18,
             },
           },

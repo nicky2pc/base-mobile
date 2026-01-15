@@ -7,11 +7,10 @@ import { Enemy } from '../../game/classes/Enemy.ts';
 import { Heart } from '../../game/classes/Heart.ts';
 import { Buff } from '../../game/classes/Heart.ts';
 import createEnemy from '../../game/createEnemy.ts';
-import { loadSounds, playRandomSound, playSound, getLeaderBoard, getAuthLeaderBoard } from '../../game/utils.ts';
+import { loadSounds, playRandomSound, playSound } from '../../game/utils.ts';
 import { useFrameMultiplier } from '../../providers/FrameMultiplierProvider.tsx';
 import { useTransactions } from '../../hooks/useTransactions.ts';
 import { useBalance } from '../../hooks/useBalance.ts';
-import LeaderboardPopup from '../LeaderboardPopup/LeaderboardPopup.tsx';
 import TransactionsTable from '../TransactionsTable/TransactionsTable.tsx';
 import GameUI from '../GameUI/GameUI.tsx';
 import LoginBtn from '../LoginBtn/LoginBtn.tsx';
@@ -48,7 +47,7 @@ const Game = () => {
   const isSoundOn = useRef<boolean>(true);
   const buffTimerRef = useRef<NodeJS.Timeout | null>(null);
   const frameMultiplier = useFrameMultiplier(); 
-  const { transactions, handleTotalScore, clearTransactions } = useTransactions();
+  const { transactions, clearTransactions } = useTransactions();
   const joystickDirection = useRef<{ angle: number; force: number }>({ angle: 0, force: 0 });
   const { open, openMintPopup, closeMintPopup } = useMintPopup();
   const joystickRef = useRef<HTMLDivElement>(null);
@@ -78,8 +77,7 @@ const Game = () => {
     healsUsed: 0,
     buffsTaken: 0
   });
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [showFaucetModal, setShowFaucetModal] = useState(false);
+    const [showFaucetModal, setShowFaucetModal] = useState(false);
   const [explosionFrames, setExplosionFrames] = useState<HTMLImageElement[]>([]);
   const bulletPoolRef = useRef<Bullet[]>([]);
 
@@ -558,9 +556,8 @@ const Game = () => {
 
   const handleStopGame = async () => {
     const totalScore = totalScoreRef.current;
-    handleTotalScore(totalScore, true, context?.user?.username);
     setGameState("gameover");
-    if (totalScore > 1) {
+    if (totalScore > 1 && isConnected) {
       openMintPopup();
     }
   }
@@ -667,14 +664,7 @@ const Game = () => {
           fireMondalakKillKount: enemy.type === "fire" ? prev.fireMondalakKillKount + 1 : prev.fireMondalakKillKount
         };
       });
-      setTimeout(() => {
-        const totalScore = totalScoreRef.current;
-        if (!isConnected) {
-          handleTotalScore(totalScore, false);
-        }
-
-      }, 0);
-
+      
       audioPool.current = playRandomSound(sounds, "kill", isSoundOn.current, audioPool.current, volumeRef.current);
     };
 
@@ -707,8 +697,8 @@ const Game = () => {
         playerTank.current.angle = Math.atan2(dy, dx);
       }
   
-      newX = Math.max(45, Math.min(canvasRef.current!.width - 45, newX));
-      newY = Math.max(45, Math.min(canvasRef.current!.height - 45, newY));
+      newX = Math.max(60, Math.min(canvasRef.current!.width - 60, newX));
+      newY = Math.max(60, Math.min(canvasRef.current!.height - 60, newY));
   
       playerTank.current.updatePosition(newX, newY);
   
@@ -748,20 +738,19 @@ const Game = () => {
         if (playerTank.current && !bullet.isExpired) {
           const dx = playerTank.current.x - bullet.x;
           const dy = playerTank.current.y - bullet.y;
-          if (Math.sqrt(dx * dx + dy * dy) < 35) {
+          if (Math.sqrt(dx * dx + dy * dy) < 52) {
             const dead = playerTank.current.takeDamage(bullet.damage);
             bullets.current.splice(bulletIndex, 1);
             updateGameStat('damageTaken', (prev) => prev + bullet.damage);
             if (dead && !isDead.current) {
               const totalScore = totalScoreRef.current;
-              handleTotalScore(totalScore, true, context?.user?.username);
               isDead.current = true;
               explosions.current.push({ x: playerTank.current.x, y: playerTank.current.y, frame: 16, width: 400, height: 395 });
               playRandomSound(sounds, 'death', isSoundOn.current, audioPool.current, volumeRef.current);
   
               setTimeout(() => {
                 setGameState('gameover');
-                if (totalScore > 1) {
+                if (totalScore > 1 && isConnected) {
                   openMintPopup();
                 }
               }, 1000);
@@ -1035,10 +1024,6 @@ const Game = () => {
           )
         }
 
-      <LeaderboardPopup 
-        isOpen={isLeaderboardOpen} 
-        onClose={() => setIsLeaderboardOpen(false)} 
-      />
 
 
         {gameState === 'playing' && (
@@ -1056,9 +1041,6 @@ const Game = () => {
           <>
             <div className="bg">
               <h1 className='total-score h1'>Jesse everyone <br /> Dodge everything</h1>
-                <button disabled={isStartButtonDisabled} className="leaderboard-button" onClick={() => setIsLeaderboardOpen(true)}>
-                  Leaderboard
-                </button>
                 <LoginBtn />
 
                 <a 
@@ -1155,9 +1137,6 @@ const Game = () => {
           <>
             <div className="bg">
               <h1 className='total-score h1'>Your total score: {gameStat.totalScore}</h1>
-              <button className="leaderboard-button" onClick={() => setIsLeaderboardOpen(true)}>
-                  Leaderboard
-                </button>
                 <LoginBtn />
                 
                 <div className="fullscreen-btn-wrapper">

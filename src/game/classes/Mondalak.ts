@@ -15,10 +15,10 @@ export class Mondalak {
   shakeOffsetX: number = 0; 
   shakeOffsetY: number = 0;
   maxHealth: number;
-  barrelSize: number = 35;
-  width: number = 70;  
-  height: number = 35;
-  hitboxRadius: number = 35;
+  barrelSize: number = 52;
+  width: number = 105;
+  height: number = 52;
+  hitboxRadius: number = 52;
   barrelThickness: number = 6;
   shootingAnimation: boolean = false;
   characterImage: HTMLImageElement;
@@ -49,8 +49,8 @@ export class Mondalak {
     this.type = type; 
     this.characterImage = characterImage;
     if (this.type === "fire") {
-      this.width = this.width + 30
-      this.height = this.height + 40
+      this.width = this.width + 45
+      this.height = this.height + 60
       this.health = 4
       this.maxHealth = 4
     }
@@ -64,12 +64,12 @@ export class Mondalak {
     let width = this.width;
     let height = this.height;
     if (this.isPlayer) {
-      width = 75;
-      height = 75;
+      width = 112;
+      height = 112;
     }
 
-    ctx.scale(-1, 1); 
-    ctx.drawImage(this.characterImage, -30, -15, width, height);
+    ctx.scale(-1, 1);
+    ctx.drawImage(this.characterImage, -width / 2, -height / 2, width, height);
 
     this.drawHealthBar(ctx);
 
@@ -82,8 +82,9 @@ export class Mondalak {
     const hpRatio = this.health / this.maxHealth;
 
     ctx.save();
-    const translateY = this.type === "fire" ? 100 : this.isPlayer ? 60 : 28; 
-    ctx.translate(20, translateY); 
+    const height = this.type === "fire" ? this.height : this.isPlayer ? 112 : this.height;
+    const translateY = height / 2 + 10;
+    ctx.translate(0, translateY); 
 
     ctx.fillStyle = '#333';
     ctx.fillRect(-barWidth / 2, 0, barWidth, barHeight);

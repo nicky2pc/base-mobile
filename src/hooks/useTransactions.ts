@@ -97,8 +97,8 @@ export const useTransactions = (): TransactionsHookReturn => {
               if (data?.tx) {
                 return {
                   ...tx,
-                  type: `Faucet: ${data.mon} MON`,
-                  link: `https://testnet.monadexplorer.com/tx/${data.tx}`,
+                  type: `Faucet: ${data.mon} ETH`,
+                  link: `https://basescan.org/tx/${data.tx}`,
                   date: Date.now(),
                   error: ""
                 };
@@ -190,14 +190,14 @@ export const useTransactions = (): TransactionsHookReturn => {
       const updatedWithHash = globalTransactions.map(tx =>
         tx.id === transaction.id ? {
           ...tx,
-          link: `https://testnet.monadexplorer.com/tx/${txHash}`,
+          link: `https://basescan.org/tx/${txHash}`,
         } : tx
       );
       updateGlobalTransactions(updatedWithHash);
 
       return {
         status: 'pending',
-        url: `https://testnet.monadexplorer.com/tx/${txHash}`,
+        url: `https://basescan.org/tx/${txHash}`,
         error: ''
       };
     } catch (error) {

@@ -186,7 +186,7 @@ export const sendTransaction = async (
         scoreSubmitted = true;
         lastSubmittedHash = lastSuccessfulTx.hash;
       }
-      return { error: "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>" };
+      return { error: "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>" };
     }
 
     let nonce: number;
@@ -239,7 +239,7 @@ export const sendTransaction = async (
     };
 
     return { 
-      url: `https://testnet.monadexplorer.com/tx/${tx.hash}`,
+      url: `https://basescan.org/tx/${tx.hash}`,
       error: ""
     };
   } catch (error) {
@@ -294,7 +294,7 @@ export const sendTransaction = async (
             errorMessage = "You rejected the transaction. Please try again.";
             break;
           case "INSUFFICIENT_FUNDS":
-            errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+            errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
             break;
           case "SERVER_ERROR":
             errorMessage = "Server connection error. Please check your internet and try again.";
@@ -309,7 +309,7 @@ export const sendTransaction = async (
             if (errorText.includes("json") || errorText.includes("unexpected end")) {
               errorMessage = "Network error. Please reload the page and try again.";
             } else if (errorText.includes("insufficient balance") || errorText.includes("signer had insufficient balance")) {
-              errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+              errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
             } else if (errorText.includes("replacement transaction underpriced")) {
               errorMessage = "Transaction nonce error. Please reload the page and try again.";
             } else if (errorText.includes("gas") || errorText.includes("fee")) {
@@ -330,7 +330,7 @@ export const sendTransaction = async (
         if (errorText.includes("json") || errorText.includes("unexpected end")) {
           errorMessage = "Network error. Please reload the page and try again.";
         } else if (errorText.includes("insufficient balance") || errorText.includes("signer had insufficient balance")) {
-          errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+          errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
         } else if (errorText.includes("replacement transaction underpriced")) {
           errorMessage = "Transaction nonce error. Please reload the page and try again.";
         } else if (errorText.includes("gas") || errorText.includes("fee")) {
@@ -362,62 +362,13 @@ export const sendTransaction = async (
 };
 
 export const setScoreOnDeath = async (address: string, score: number, hash_tx: string, user: any) => {
-  if ( user.twitter_id ) {
-    user = "@" + user.twitter.username;
-  } else if (user.google.email) {
-    user = user.google.email;
-  } else {
-    user = null;
-  }
-
-  const setScoreOnDeath = await fetch("https://gameapi.monadassistant.xyz/set_score", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      address: address,
-      score: `${score}`,
-      hash_tx: hash_tx,
-      user: user
-    })
-  })
-
-  if (!setScoreOnDeath.ok) {
-    throw new Error(`Err: ${setScoreOnDeath.statusText}`);
-  }
-
-  const data = await setScoreOnDeath.json();
+  // Backend not connected - function disabled
+  return;
 }
 
 export const sendTransactionAsGuest = async ({score, isDead = false, username} : {score: number, isDead: boolean, username?: string}) => {
-  try {
-    const playerId = getOrCreatePlayerId();
-
-    const reqData = {
-      id: username ? username : playerId,
-      score: `${score}`,
-      isDead: isDead
-    };    
-
-    const response = await fetch("https://gameapi.monadassistant.xyz/set_score", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(reqData) as any
-    });
-
-    if (!response.ok) {
-      return { error: `Server error ${response.statusText}`, link: "" };
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Err:", error);
-    return { error: "Server error" };
-  }
+  // Backend not connected - function disabled
+  return { error: "" };
 }
 
 export const mint = async (
@@ -471,7 +422,7 @@ export const mint = async (
       const estimatedCost = gasPrice * BigInt(gasLimit);
 
       if (balance < estimatedCost) {
-        return { error: "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>" };
+        return { error: "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>" };
       }
 
       let nonce: number;
@@ -514,7 +465,7 @@ export const mint = async (
       });
 
       return { 
-        url: `https://testnet.monadexplorer.com/tx/${tx.hash}`,
+        url: `https://basescan.org/tx/${tx.hash}`,
         userAddress: userAddress,
         error: ""
       };
@@ -588,7 +539,7 @@ export const mint = async (
             errorMessage = "You rejected the transaction. Please try again.";
             break;
           case "INSUFFICIENT_FUNDS":
-            errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+            errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
             break;
           case "SERVER_ERROR":
             errorMessage = "Server connection error. Please check your internet and try again.";
@@ -602,7 +553,7 @@ export const mint = async (
             if (errorText.includes("json") || errorText.includes("unexpected end")) {
               errorMessage = "Network error. Please reload the page and try again.";
             } else if (errorText.includes("insufficient balance") || errorText.includes("signer had insufficient balance")) {
-              errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+              errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
             } else if (errorText.includes("replacement transaction underpriced")) {
               errorMessage = "Transaction nonce error. Please reload the page and try again.";
             } else if (errorText.includes("gas") || errorText.includes("fee")) {
@@ -623,7 +574,7 @@ export const mint = async (
         if (errorText.includes("json") || errorText.includes("unexpected end")) {
           errorMessage = "Network error. Please reload the page and try again.";
         } else if (errorText.includes("insufficient balance") || errorText.includes("signer had insufficient balance")) {
-          errorMessage = "No MONs left, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
+          errorMessage = "Insufficient ETH, you can <a href='#' class='interactive-link' data-action='logout'>play as a guest</a> or <a href='#' class='interactive-link' data-action='faucet'>use Faucet</a>";
         } else if (errorText.includes("replacement transaction underpriced")) {
           errorMessage = "Transaction nonce error. Please reload the page and try again.";
         } else if (errorText.includes("gas") || errorText.includes("fee")) {
@@ -649,39 +600,13 @@ export const mint = async (
 };
 
 export const getLeaderBoard = async () => {
-  const response = await fetch("https://gameapi.monadassistant.xyz/get_top_10_scores_not_auth",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`Error getting leaderboard: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data;
+  // Backend not connected - function disabled
+  return [];
 };
 
 export const getAuthLeaderBoard = async () => {
-  const response = await fetch("https://gameapi.monadassistant.xyz/get_top_10_scores_auth",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`Error getting leaderboard: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data;
+  // Backend not connected - function disabled
+  return [];
 };
 
 export const getFormattedBalance = async (wallet: any): Promise<string> => {
@@ -707,39 +632,6 @@ export const getFormattedBalance = async (wallet: any): Promise<string> => {
 }
 
 export const faucet = async (address: string): Promise<LeaderboardResponse> => {
-  try {
-    const response = await fetch(`https://gameapi.monadassistant.xyz/crane_monad?address=${address}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }); 
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Faucet API error response:", errorText);
-      throw new Error(`Error: ${response.statusText}. Details: ${errorText}`);
-    }
-    const data = await response.json();
-    
-    if (data && 'mon' in data) {
-      return {
-        ...data,
-        error: ""
-      };
-    }  else {
-      if ( data.deadline_seconds ) {
-        return {
-          ...data,
-          error: "Faucet is on cooldown."
-        };
-      } else {
-        return data
-      }
-    }
-  } catch (error) {
-    return {
-      error: error instanceof Error ? error.message : "Unknown error"
-    };
-  }
+  // Backend not connected - function disabled
+  return { error: "Faucet not available on Base" };
 };

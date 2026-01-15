@@ -31,16 +31,16 @@ export class Enemy extends Mondalak {
       this.targetY = this.y + (Math.random() - 0.5) * 400;
       this.moveCooldown = Date.now() + this.getRandomCooldown();
 
-      this.targetX = Math.max(45, Math.min(CONFIG.CANVAS_WIDTH - 45, this.targetX));
-      this.targetY = Math.max(45, Math.min(CONFIG.CANVAS_HEIGHT - 45, this.targetY));
+      this.targetX = Math.max(60, Math.min(CONFIG.CANVAS_WIDTH - 60, this.targetX));
+      this.targetY = Math.max(60, Math.min(CONFIG.CANVAS_HEIGHT - 60, this.targetY));
     }
 
     const lerpFactor = this.moveSpeed * 0.01; 
     this.x = this.lerp(this.x, this.targetX, lerpFactor);
     this.y = this.lerp(this.y, this.targetY, lerpFactor);
 
-    this.x = Math.max(45, Math.min(CONFIG.CANVAS_WIDTH - 45, this.x));
-    this.y = Math.max(45, Math.min(CONFIG.CANVAS_HEIGHT - 45, this.y));
+    this.x = Math.max(60, Math.min(CONFIG.CANVAS_WIDTH - 60, this.x));
+    this.y = Math.max(60, Math.min(CONFIG.CANVAS_HEIGHT - 60, this.y));
 
     if ((Date.now() - this.lastShot > this.fireRate) && (Date.now() - 700 > this.spawnTime)) {
       return this.shoot();
