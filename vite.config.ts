@@ -11,14 +11,14 @@ function fcFrameMeta(): Plugin {
     transformIndexHtml(html: string) {
       const config = {
         version: 'next',
-        imageUrl: 'https://base-mobile.vercel.app/logo_2.jpg',
+        imageUrl: 'https://base-solodan.vercel.app/logo_2.jpg',
         button: {
           title: 'Play!',
           action: {
             type: 'launch_frame',
             name: 'Base defanse',
-            url: `https://base-mobile.vercel.app`, 
-            splashImageUrl: 'https://base-mobile.vercel.app/logo_2.jpg',
+            url: `https://base-solodan.vercel.app`, 
+            splashImageUrl: 'https://base-solodan.vercel.app/logo_2.jpg',
             splashBackgroundColor: '#4A98EB',
           },
         },
