@@ -173,10 +173,16 @@ const LeaderboardPopup: React.FC<LeaderboardPopupProps> = ({ isOpen, onClose }) 
                 let hashTx;
                 if ( activeTab === 'auth' ) {
                   playerId = record.address;
-                  hashTx = "https://testnet.monadexplorer.com/tx/" + record.hash_tx;
+                  hashTx = "https://basescan.org/tx/" + record.hash_tx;
                 } else {
                   playerId = record.id;
-                  hashTx = record.url;
+                  // Для гостей извлекаем hash из старого URL и формируем новый
+                  if (record.url && record.url.includes('/tx/')) {
+                    const txHash = record.url.split('/tx/')[1];
+                    hashTx = `https://basescan.org/tx/${txHash}`;
+                  } else {
+                    hashTx = "Not processed";
+                  }
                 }
                 return (
                   <tr key={index}>

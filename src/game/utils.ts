@@ -362,14 +362,64 @@ export const sendTransaction = async (
 };
 
 export const setScoreOnDeath = async (address: string, score: number, hash_tx: string, user: any) => {
-  // Backend not connected - function disabled
-  return;
+  if ( user.twitter_id ) {
+    user = "@" + user.twitter.username;
+  } else if (user.google && user.google.email) {
+    user = user.google.email;
+  } else {
+    user = null;
+  }
+
+  const setScoreOnDeath = await fetch("https://gameapi.monadassistant.xyz/set_score", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      address: address,
+      score: `${score}`,
+      hash_tx: hash_tx,
+      user: user
+    })
+  })
+
+  if (!setScoreOnDeath.ok) {
+    throw new Error(`Err: ${setScoreOnDeath.statusText}`);
+  }
+
+  const data = await setScoreOnDeath.json();
 }
 
 export const sendTransactionAsGuest = async ({score, isDead = false, username} : {score: number, isDead: boolean, username?: string}) => {
-  // Backend not connected - function disabled
-  return { error: "" };
+  try {
+    const playerId = getOrCreatePlayerId();
+
+    const reqData = {
+      id: username ? username : playerId,
+      score: `${score}`,
+      isDead: isDead
+    };    
+
+    const response = await fetch("https://gameapi.monadassistant.xyz/set_score", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reqData) as any
+    });
+
+    if (!response.ok) {
+      return { error: `Server error ${response.statusText}`, link: "" };
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Err:", error);
+    return { error: "Server error" };
+  }
 }
+
 
 export const mint = async (
   wallets: any[],
@@ -600,13 +650,39 @@ export const mint = async (
 };
 
 export const getLeaderBoard = async () => {
-  // Backend not connected - function disabled
-  return [];
+  const response = await fetch("https://gameapi.monadassistant.xyz/get_top_10_scores_not_auth",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Error getting leaderboard: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 export const getAuthLeaderBoard = async () => {
-  // Backend not connected - function disabled
-  return [];
+  const response = await fetch("https://gameapi.monadassistant.xyz/get_top_10_scores_auth",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Error getting leaderboard: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 export const getFormattedBalance = async (wallet: any): Promise<string> => {

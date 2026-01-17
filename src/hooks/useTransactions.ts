@@ -228,7 +228,7 @@ export const useTransactions = (): TransactionsHookReturn => {
       date: Date.now(),
       error: ""
     };
-
+  
     updateTransactions(transaction, () => {
       return import('../game/utils.ts').then(m => m.sendTransactionAsGuest({score, isDead, username}))
     });

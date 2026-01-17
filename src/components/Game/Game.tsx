@@ -23,6 +23,8 @@ import VConsole from 'vconsole';
 import { sdk } from '@farcaster/miniapp-sdk';
 import { useFrame } from '../../providers/FarcasterProvider.tsx';
 import { isMobile } from 'react-device-detect';
+import LeaderboardPopup from '../LeaderboardPopup/LeaderboardPopup.tsx';
+
 
 
 //new VConsole();
@@ -68,6 +70,7 @@ const Game = () => {
   const [buffTimerValue, setBuffTimerValue] = useState<number>(0);
   const [isStartButtonDisabled, setIsStartButtonDisabled] = useState(true);
   const [warpcastShareLoading, setWarpcastShareLoading] = useState(false);
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [gameStat, setGameStat] = useState({
     totalScore: 0,
     killCount: 0,
@@ -1041,6 +1044,13 @@ const Game = () => {
           <>
             <div className="bg">
               <h1 className='total-score h1'>Jesse everyone <br /> Dodge everything</h1>
+                <button className="leaderboard-button" onClick={() => setIsLeaderboardOpen(true)}>
+                  Leaderboard
+                </button>
+                <LeaderboardPopup 
+                  isOpen={isLeaderboardOpen} 
+                  onClose={() => setIsLeaderboardOpen(false)} 
+                />
                 <LoginBtn />
 
                 <a 
