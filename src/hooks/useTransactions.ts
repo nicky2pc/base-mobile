@@ -173,16 +173,13 @@ export const useTransactions = (): TransactionsHookReturn => {
     updateGlobalTransactions(updated);
 
     try {
-      // Subtract 60 seconds to prevent underflow if client clock is ahead of blockchain
-      const timestamp = Math.floor(Date.now() / 1000) - 60;
-      const validationString = `${timestamp}__${uuidv4()}`;
       const tokenURI = "ipfs://bafkreigyp53t6rwzyi2iczndj7yr5h6jo3wiyvn5gtwte434qjbfwydlrm";
-      
+    
       const { request } = await simulateContract(config, {
-        address: "0x2De241B84F9062925c532735AB56857ad402c209" as `0x${string}`,
+        address: "0x2A4cAF0e6e2D256854cb159EAc574428f5a1509D" as `0x${string}`, 
         abi: MINT_CONTRACT_ABI,
         functionName: 'mint',
-        args: [validationString, tokenURI],
+        args: [address, tokenURI], // 👈 Теперь просто адрес + URI
         chainId: 8453,
       });
       
